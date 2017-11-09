@@ -1,0 +1,127 @@
+<h1>
+  {{title}}
+</h1>
+
+<h2>ngIf demo</h2>
+<div> ODDs
+  <p *ngIf='oddNumber > 1'>
+    <span>{{oddNumber}}</span>
+  </p>
+
+  <p *ngIf='oddNumber > 10'>
+    <span>{{oddNumber}}</span>
+  </p>
+</div>
+
+<div>
+  EVENs
+
+  <div>
+    Check if the number is greater than 2:
+    <span *ngIf='evenNumber > 2'>{{evenNumber}}</span>
+    <span *ngIf='(evenNumber%2)==0'>Is Even</span>
+  </div>
+
+
+  <p>
+    <span *ngIf='evenNumber > 20'>{{evenNumber}}</span>
+  </p>
+</div>
+
+<div>
+  ngFor
+  <ul>
+    <li *ngFor='let n of numbers'>{{n*2}}</li>
+
+  </ul>>
+
+  <ul>
+    <li *ngFor='let theNumber of numbers; let i = index'>
+      index: {{i}} - value : {{theNumber}}
+    </li>
+  </ul>
+
+</div>
+
+
+<div>
+  ngSwitch
+
+  <ul>
+    <li *ngFor='let number of numbers; let idx = index'>
+      {{number}} at {{idx}}
+      <p [ngSwitch]='number'>
+        <span *ngSwitchCase='1'>ONE - {{number}}</span>
+        <span *ngSwitchCase='2'>TWO - {{number}}</span>
+        <span *ngSwitchDefault>No Translation - {{number}}</span>
+
+      </p>
+
+      <p [ngSwitch]='number%2'>
+        <span *ngSwitchCase='0'>is EVEN ***************</span>
+        <span *ngSwitchDefault> is not even
+          <<<<<<<<<<<<<<<<<<<<</span>
+      </p>
+
+    </li>
+  </ul>
+
+</div>
+
+
+
+<div>
+  NgStyle
+  <div [style.background-color]="'red'" [style.font-family]="'Verdana'" [style.color]="'yellow'" [style.font-weight]="'bold'">This is red</div>
+
+  Sample with multiple properties specified as json object string
+  <p [ngStyle]="{color:'blue', 'font-weight':'bold', 'font-family' : 'Verdana', 'background-color':'yellow'}">This is some text</p>
+
+
+  <input type='text' name="color" #textColor>
+  <input type='text' name="size" #textSize>
+
+  <button (click)='updateColor(textColor.value, textSize.value)'>Change the color and size</button>
+
+  <p [style.color]='color' [style.font-size]="size">{{color}}</p>
+
+  <p [ngStyle]="{color : color, 'font-size' : size }">this is [ngStyle]</p>
+
+</div>
+
+
+
+<div>
+  NgClass
+  <div>Archaic usage of class attribute on html element
+    <p class="whiteOnRed italicFont size2emFont"> some white text on red background</p>
+  </div>
+  <div>
+    using NgClass with boolean flags that activate specific class specified as json string
+    <p [ngClass]="{whiteOnRed:true, italicFont:true, size2emFont:true}"> spacified as json - white text on red background that is italic and 2em size</p>
+    <p [ngClass]="{whiteOnRed:true, italicFont:false, size2emFont:false}">only white text on red background</p>
+    <p [ngClass]="{whiteOnRed:true, italicFont:false, size2emFont:true}">only white text on red background with size of 2em</p>
+     </div>
+<div>specified as json object
+  <p [ngClass]='whiteOnRedItalicOf2Em'>spacified as json object - white text on red background that is italic and 2em size</p>
+  <div>use white on red : <input type="checkbox"   [(checked)]='useWhiteOnRed' /> <span>{{useWhiteOnRed}}</span> </div>
+</div>
+
+  <div>
+    using NgClass with an array of classes that needs to be applied
+    <p [ngClass]="['whiteOnRed', 'italicFont', 'size2emFont']">specified as an array - white text on red background that is italic and 2em size</p>
+    <p [ngClass]="['whiteOnRed']">only white text on red background</p>
+    <p [ngClass]="['whiteOnRed','size2emFont']">only white text on red background with size of 2em</p>
+  </div>
+  <div>
+
+
+<input id="setbtn" type="button" value="set" ng-click="myVar='my-class'">
+<input id="clearbtn" type="button" value="clear" ng-click="myVar=''">
+<br>
+<span class="base-class" ng-class="myVar">Sample Text</span>
+
+
+
+  </div>
+</div>
